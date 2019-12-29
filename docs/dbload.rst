@@ -7,7 +7,7 @@ Database Loader Documentation
 Module Description
 ------------------
 
-* dbloader.py
+* dbload.py
     The main module for loading the database. It can be run from the
     command line or called by the coin daemon.
 
