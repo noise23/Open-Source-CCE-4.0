@@ -65,21 +65,43 @@ def format_hour(nTime):
 # Calculate time passed from block timestamp to server time.
 def time_passed(nTime):
     try:
-        seconds = int(time.time()) - nTime
-        if seconds < 0:
+        secs = int(time.time()) - nTime
+        if secs < 0:
             # Block is time is ahead of server time. Three examples of a response are shown.
-            # return str(abs(seconds)) + ' seconds in the future')
+            return str(abs(secs)) + ' seconds in the future'
             # return str('0 minutes 0 seconds')
-            return str('Ahead of server time')
-        elif seconds < 60:
-            return str(seconds) + ' seconds'
+            # return str('Ahead of server time')
+        elif secs < 60:
+            return str(secs) + ' seconds'
+        elif secs < 3600:
+            minutes = secs//60
+            seconds = secs - minutes*60
+            result = ("{0} minute{1}".format(minutes, "s" if minutes!=1 else "") if minutes else "") + \
+            (", {0} second{1}".format(seconds, "s" if seconds!=1 else "") if seconds else "")   
+        elif secs < 86400:
+            hours = secs//3600
+            minutes = (secs - hours*3600)//60
+            seconds = secs - hours*3600 - minutes*60
+            result = ("{0} hour{1}".format(hours, "s" if hours!=1 else "") if hours else "") + \
+            (", {0} minute{1}".format(minutes, "s" if minutes!=1 else "") if minutes else "") + \
+            (", {0} second{1}".format(seconds, "s" if seconds!=1 else "") if seconds else "")
+            return result
+        elif secs < 31556952:
+            days = secs//86400
+            hours = (secs - days*86400)//3600
+            minutes = (secs - days*86400 - hours*3600)//60
+            result = ("{0} day{1}".format(days, "s" if days!=1 else "") if days else "") + \
+            (", {0} hour{1}".format(hours, "s" if hours!=1 else "") if hours else "") + \
+            (", {0} minute{1}".format(minutes, "s" if minutes!=1 else "") if minutes else "") 
+            return result
         else:
-            minutes = int(seconds / 60)
-            if minutes == 1:
-                seconds = int(seconds % 60)
-                return str(minutes) + ' minute ' + str(seconds) + ' seconds'
-            else:
-                return str(minutes) + ' minutes'
+            years = secs//31556952     
+            days = (secs - years*31556952)//86400
+            hours = (secs - years*31556952 - days*86400)//3600
+            result = ("{0} year{1}".format(years, "s" if years!=1 else "") if years else "") + \
+            (", {0} day{1}".format(days, "s" if days!=1 else "") if days else "") + \
+            (", {0} hour{1}".format(hours, "s" if hours!=1 else "") if hours else "")
+            return result
     except:
         return format_hour(nTime)
 
