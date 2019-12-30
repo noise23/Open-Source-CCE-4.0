@@ -3,31 +3,28 @@
 <br />
 <div class="jumbotron">
 {% if block.Status == 'ok' %}
-    &nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <form method="get" action="/search" autocomplete="off" form style="display:inline">
     <input type="text"  size = "75" name="sterm" pattern="[a-zA-Z0-9 ]{1,}"title="a-z A-Z 0-9" maxlength="75"  autofocus required>
-    <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form><br>
-
-    <br />
-    <h2>Block Height: <font style="color:maroon;"> {{ block.blk[0] }}</font></h2>
-
+    <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form>
    </div>
- <div class="container-fluid">
+<div class="container-fluid">
+<h5>&nbsp;&nbsp;&nbsp;&nbsp;<a href="block?block={{block.blk[0] - 1}}">&lt;&lt;&lt; &nbsp;&nbsp;Previous Block {{block.blk[0] - 1}}</a> ....... <a href="block?block={{block.blk[0] + 1}}">Next Block {{block.blk[0] + 1}}&nbsp;&nbsp;&gt;&gt;&gt;</a></h5>
+<h3>&nbsp;&nbsp;Block Height: <a style=style="color:maroon;" href="/?height={{block.blk[0]}}"> {{ block.blk[0] }}</a></h3>
 
-    Height: {{ block.blk[0] }} <br><br>
-    Hash: {{ block.blk[1] }} <br><br>
-    Time: {{ block.blk[2] }} ({{block.blk[2] | format_time }}) <br><br>
-    Difficulty: {{ block.blk[5] | normalize }} (Bits: {{ block.blk[4] }}) <br><br>
-    Transactions: {{ block.blk[11] }} <br><br>
-    Total Sent: {{ block.blk[12] | normalize }} <br><br>
-    Size: {{ block.blk[6] }} kilobytes<br><br>
-    Merkle Root: {{ block.blk[8] }} <br><br>
-    Nonce: {{block.blk[3] }} <br><br>
-
+    &nbsp;&nbsp;&nbsp;Height: {{ block.blk[0] }} <br>
+    &nbsp;&nbsp;&nbsp;Hash: {{ block.blk[1] }} <br>
+    &nbsp;&nbsp;&nbsp;Time: {{ block.blk[2] }} ({{block.blk[2] | format_time }}) <br>
+    &nbsp;&nbsp;&nbsp;Difficulty: {{ block.blk[5] | normalize }} (Bits: {{ block.blk[4] }}) <br>
+    &nbsp;&nbsp;&nbsp;Transactions: {{ block.blk[11] }} <br>
+    &nbsp;&nbsp;&nbsp;Total Sent: {{ block.blk[12] | normalize }} <br>
+    &nbsp;&nbsp;&nbsp;Size: {{ block.blk[6] }} kilobytes<br>
+    &nbsp;&nbsp;&nbsp;Merkle Root: {{ block.blk[8] }} <br>
+    &nbsp;&nbsp;&nbsp;Nonce: {{block.blk[3] }} <br>
 </div>
 {% if block.transactions %}
 <div class="container-fluid">
-<br /> <h2> Transactions</h2><br />
+<h3>&nbsp;Transactions</h3>
      <table class="table table-condensed table-striped table-hover table-responsive table-bordered">
         <thead>
             <th>Transaction Hash(TXID)</th>
@@ -59,10 +56,8 @@
         </td></tr>
     {% endfor %}
     </tbody>
-
-
-
 </table>
+<h5>&nbsp;&nbsp;<a href="block?block={{block.blk[0] - 1}}">&lt;&lt;&lt; &nbsp;&nbsp;Previous Block {{block.blk[0] - 1}}</a> ....... <a href="block?block={{block.blk[0] + 1}}">Next Block {{block.blk[0] + 1}}&nbsp;&nbsp;&gt;&gt;&gt;</a></h5>
 </div>
 {% endif %}
 {% else %}
