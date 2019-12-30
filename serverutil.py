@@ -142,11 +142,22 @@ def query_noreturn(sql, *parms):
         return None
 
 
-def homepage():
+def homepage(num, height):
     try:
+        if num is None:
+            num = 25
+        else:
+            num = int(num)
+            if num > 100:
+                num = 100
+
         stats = query_single('SELECT * FROM stats')
-        topblocks = query_multi('SELECT * FROM block ORDER BY height DESC LIMIT 10')
-        return {'Status': 'ok', 'stats': stats, 'topblocks': topblocks}
+        if height is None:
+            topblocks = query_multi('SELECT * FROM block ORDER BY height DESC LIMIT %s', num)
+            height = topblocks[0][0];
+        else:
+            topblocks = query_multi('SELECT * FROM block WHERE height <= %s ORDER BY height DESC LIMIT %s', height, num)
+        return num, int(height), {'Status': 'ok', 'stats': stats, 'topblocks': topblocks}
     except Exception as e:
         print >> sys.stderr, e, 'Homepage'
         return {'Status': 'error', 'Data': 'Unknown error'}
