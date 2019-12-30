@@ -39,8 +39,8 @@
      <tbody>
      {% for row in topblocks %}
      <tr>
-	<td><form method="get"><input type="submit" class="button" input name= "block" value="{{ row[0] }}" formaction="block"></form>
-		</td><td>{{ row[2] | format_time }}<div style="font-size:9px">{{ row[2] | time_passed }}</div></td>
+	<td><h5><a href="block?block={{ row[0] }}">{{ row[0] }}</a></h5></td>
+	<td>{{ row[2] | format_time }}<div style="font-size:9px">{{ row[2] | time_passed }}</div></td>
 		<td>{{ row[11] }}</td><td>{{ row[12] | normalize }}</td><td>{{ row[5] | normalize }}</td><td>{{ row[6] }}</td></tr>
 	{% endfor %}
          </tbody>
