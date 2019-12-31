@@ -2,17 +2,14 @@
 {% block content %}
 <br />
 <div class="jumbotron">
-    {% if transaction.Status == "ok" %}
-       &nbsp;&nbsp;
+{% if transaction.Status == "ok" %}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <form method="get" action="/search" autocomplete="off" form style="display:inline">
     <input type="text"  size = "75" name="sterm" pattern="[a-zA-Z0-9 ]{1,}"title="a-z A-Z 0-9" maxlength="75"  autofocus required>
-    <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form><br>
-
-    <br />
-    <h2>Transaction: <font style="color:maroon;"> {{ transaction.txout[0][0] }}</font></h2>
-    </div>
-
+    <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form>
+   </div>
 <div class="container-fluid">
+<h3>Transaction: <font style="color:maroon;"> {{ transaction.txout[0][0] }}</font></h3>
 
     Block Height: <a href="/block?block={{ transaction.blk[0] }}">{{ transaction.blk[0] }}</a><br>
     TX Hash: {{ transaction.txout[0][0] }} <br>
@@ -23,7 +20,7 @@
 
 
 <div class="container-fluid">
-<br /> <h2> Inputs</h2><br />
+<h3>&nbsp;Inputs</h3>
      <table class="table table-condensed table-striped table-hover table-responsive table-bordered">
         <thead>
             <th>Index</th>
@@ -51,7 +48,7 @@
     </table>
 
 
-<br /> <h2> Outputs</h2><br />
+<h3>&nbsp;Outputs</h3>
      <table class="table table-condensed table-striped table-hover table-responsive table-bordered">
         <thead>
             <th>Index</th>

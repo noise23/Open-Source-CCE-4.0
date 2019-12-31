@@ -12,12 +12,6 @@
     <input type="text"  size = "75" name="sterm" pattern="[a-zA-Z0-9 ]{1,}"title="a-z A-Z 0-9" maxlength="75"  autofocus required>
     <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form>
 </td><td> 
-<h4>&nbsp;
-    {% if stats[0] > 0 %}
-        Network Hash Rate:&nbsp;<font style="color:maroon;">{{ stats[0] | normalize }}&nbsp;{{ ratelabel }}</font>&nbsp;&nbsp;
-    {% endif %}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total coin-supply: <span style="color:maroon;">{{ stats[0] | normalize }}</span></h4>
-</tr></td>
 </table>
 </div>
 <div class="container-fluid table-responsive">
