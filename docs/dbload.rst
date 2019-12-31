@@ -149,6 +149,8 @@ the coin daemon is synced and the database has been populated by the dbloader us
 
 Be sure to put the correct directory to dbloader in the 'coin.sh' file
 
+Make coin.sh executable: chmod +x coin.sh
+
 
 Auto start after a server reboot (Optional)
 -------------------------------------------

@@ -10,7 +10,10 @@
     &nbsp;&nbsp;&nbsp;&nbsp;
     <form method="get" action="/search" autocomplete="off" form style="display:inline">
     <input type="text"  size = "75" name="sterm" pattern="[a-zA-Z0-9 ]{1,}"title="a-z A-Z 0-9" maxlength="75"  autofocus required>
-    <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form>
+    <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="button">Total coin-supply: <span style="color:maroon;"><b>{{ stats[2] | normalize }}</b></span></button>
+    <button class="button">PoS difficulty: <span style="color:maroon;"><b>{{ stats[1] | normalize }}</b></span></button>
+    <button class="button">Connections: <span style="color:maroon;"><b>{{ stats[3] | normalize }}</b></span></button>
 </td><td> 
 </table>
 </div>
