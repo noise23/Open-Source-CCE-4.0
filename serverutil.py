@@ -78,6 +78,7 @@ def time_passed(nTime):
             seconds = secs - minutes*60
             result = ("{0} minute{1}".format(minutes, "s" if minutes!=1 else "") if minutes else "") + \
             (", {0} second{1}".format(seconds, "s" if seconds!=1 else "") if seconds else "")   
+            return result
         elif secs < 86400:
             hours = secs//3600
             minutes = (secs - hours*3600)//60
