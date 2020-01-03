@@ -107,7 +107,51 @@ Stopping the web server
 
 * Run the kill.sh script
 
+Starting/Stopping the web server with systemd
+---------------------------------------------
 
+* Create /lib/systemd/system/cce.service file
 
+        - sudo nano /lib/systemd/system/cce.service
 
+::
 
+                [Unit]
+                Description=Coin Explorer Cherrypy Web Server
+                After=mysql.service
+                After=network.target
+                
+                [Service]
+                Type=forking
+                WorkingDirectory=/path/to/working/dir/
+                ExecStart=/usr/bin/python /path/to/working/dir/websrv.py
+                PIDFile=/path/to/working/dir/cherrypy.pid
+                Restart=on-failure
+                RestartSec=2
+                TimeoutStopSec=60
+                TimeoutStartSec=5
+                StartLimitInterval=120
+                StartLimitBurst=15
+                
+                [Install]
+                WantedBy=multi-user.target
+                Alias=cce.service    
+
+- Hit Ctrl+X to save this file
+
+* Reload systemd.
+
+        - sudo systemctl daemon-reload
+
+* Enable the cce service.
+
+        - sudo systemctl enable cce
+        
+* Start the ccetrk service.
+
+        - sudo systemctl start cce
+        
+* Check the status of the cce service to make sure it is running.
+
+        - sudo systemctl status cce
+        
