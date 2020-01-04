@@ -180,6 +180,10 @@ class explorer:
                 total_m = query_single('SELECT total_mint FROM stats')
                 minted = {'total minted': total_m[0]}
                 return json.dumps(minted)
+            elif command == 'totalmintr':
+                total_m = query_single('SELECT total_mint FROM stats')
+                mintedr = {'total minted': "{0:.0f}".format(total_m[0])}
+                return json.dumps(mintedr)
             return json.dumps({'error':'invalid'})
         except Exception:
             raise cherrypy.HTTPError(503)
