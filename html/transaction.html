@@ -1,26 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-<br />
 <div class="jumbotron">
-{% if transaction.Status == "ok" %}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;
     <form method="get" action="/search" autocomplete="off" form style="display:inline">
     <input type="text"  size = "75" name="sterm" pattern="[a-zA-Z0-9 ]{1,}"title="a-z A-Z 0-9" maxlength="75"  autofocus required>
     <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form>
    </div>
 <div class="container-fluid">
-<h3>Transaction: <font style="color:maroon;"> {{ transaction.txout[0][0] }}</font></h3>
+{% if transaction.Status == "ok" %}
+<h3>&nbsp;&nbsp;Transaction: <font style="color:maroon;"> {{ transaction.txout[0][0] }}</font></h3>
+
+<table class="table table-box" style="max-width:800px">
+<tbody><tr><td>
 
     Block Height: <a href="/block?block={{ transaction.blk[0] }}">{{ transaction.blk[0] }}</a><br>
     TX Hash: {{ transaction.txout[0][0] }} <br>
     Time: {{ transaction.blk[2] }} ({{transaction.blk[2] | format_time }}) <br>
     Number of Inputs: {{transaction.txin | length }} <br>
     Number of Outputs: {{ transaction.txout | length}} <br>
+    
+</td></tr></tbody>
+</table>
+    
 </div>
 
-
 <div class="container-fluid">
-<h3>&nbsp;Inputs</h3>
+<h3>&nbsp;&nbsp;Inputs</h3>
+
+<table class="table table-box">
+<tbody><tr><td>
+
      <table class="table table-condensed table-striped table-hover table-responsive table-bordered">
         <thead>
             <th>Index</th>
@@ -44,11 +53,16 @@
 
 	{% endfor %}
          </tbody>
-
     </table>
+    
+</td></tr></tbody>
+</table>
 
+<h3>&nbsp;&nbsp;Outputs</h3>
 
-<h3>&nbsp;Outputs</h3>
+<table class="table table-box">
+<tbody><tr><td>
+
      <table class="table table-condensed table-striped table-hover table-responsive table-bordered">
         <thead>
             <th>Index</th>
@@ -69,22 +83,15 @@
 
 	{% endfor %}
          </tbody>
-
     </table>
+    
+</td></tr></tbody>
+</table>
+    
     </div>
 
-
 {% else %}
-<h1 style="text-align:center;">Transaction information was not found.</h1></div>
+<h2 style="text-align:center; color:maroon;">Transaction information was not found.</h2></div>
 {% endif %}
-
-
-
-
-
-
-
-
-
 {% endblock %}
 

@@ -3,26 +3,28 @@
 
 {% endblock %}
 {% block content %}
-<br />
 <div class="jumbotron">
 <table>
 <tr><td> 
-    &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;
     <form method="get" action="/search" autocomplete="off" form style="display:inline">
     <input type="text"  size = "75" name="sterm" pattern="[a-zA-Z0-9 ]{1,}"title="a-z A-Z 0-9" maxlength="75"  autofocus required>
     <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <button class="button">Total coin-supply: <span style="color:maroon;"><b>{{ "{0:,.0f}".format(stats[2]) }}</b></span></button>
     <button class="button">PoS difficulty: <span style="color:maroon;"><b>{{ stats[1] | normalize }}</b></span></button>
     <button class="button">Connections: <span style="color:maroon;"><b>{{ stats[3] | normalize }}</b></span></button>
-</td><td> 
+</td></tr> 
 </table>
 </div>
 <div class="container-fluid table-responsive">
 <table>
 <tr><td> 
-<h5>&nbsp;&nbsp;&nbsp; <a href="/">Home</a> ....... <a href="?height={{ prevPage }}&num={{ numberOfBlocks }}">&lt;&lt;&lt; &nbsp;&nbsp;Back</a> ....... <a href="?height={{ nextPage }}&num={{ numberOfBlocks }}">Next &nbsp;&nbsp;&gt;&gt;&gt;</a></h5>
+<h5><b>&nbsp;&nbsp;&nbsp; <a href="/">Home</a> ....... <a href="?height={{ prevPage }}&num={{ numberOfBlocks }}">&lt;&lt;&lt; &nbsp;&nbsp;Back</a> ....... <a href="?height={{ nextPage }}&num={{ numberOfBlocks }}">Next &nbsp;&nbsp;&gt;&gt;&gt;</a></b></h5>
 </tr></td>
 </table>
+
+<table class="table table-box" style="max-width:1500px">
+<tbody><tr><td>
 
      <table class="table table-condensed table-striped table-hover">
         <thead>
@@ -42,9 +44,13 @@
 	{% endfor %}
          </tbody>
     </table>
+    
+</td></tr></tbody>
+</table>
+
 <table>
 <tr><td> 
-<h5>&nbsp;&nbsp;&nbsp; <a href="/">Home</a> ....... <a href="?height={{ prevPage }}&num={{ numberOfBlocks }}">&lt;&lt;&lt; &nbsp;&nbsp;Back</a> ....... <a href="?height={{ nextPage }}&num={{ numberOfBlocks }}">Next &nbsp;&nbsp;&gt;&gt;&gt;</a></h5>
+<h5><b>&nbsp;&nbsp;&nbsp; <a href="/">Home</a> ....... <a href="?height={{ prevPage }}&num={{ numberOfBlocks }}">&lt;&lt;&lt; &nbsp;&nbsp;Back</a> ....... <a href="?height={{ nextPage }}&num={{ numberOfBlocks }}">Next &nbsp;&nbsp;&gt;&gt;&gt;</a></b></h5>
 </tr></td>
 </table>
 </div>

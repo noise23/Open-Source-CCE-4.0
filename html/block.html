@@ -1,17 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<br />
 <div class="jumbotron">
 {% if block.Status == 'ok' %}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;
     <form method="get" action="/search" autocomplete="off" form style="display:inline">
     <input type="text"  size = "75" name="sterm" pattern="[a-zA-Z0-9 ]{1,}"title="a-z A-Z 0-9" maxlength="75"  autofocus required>
     <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form>
    </div>
 <div class="container-fluid">
-<h5>&nbsp;&nbsp;&nbsp;&nbsp;<a href="block?block={{block.blk[0] - 1}}">&lt;&lt;&lt; &nbsp;&nbsp;Previous Block {{block.blk[0] - 1}}</a> ....... <a href="block?block={{block.blk[0] + 1}}">Next Block {{block.blk[0] + 1}}&nbsp;&nbsp;&gt;&gt;&gt;</a></h5>
+<h5><b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="block?block={{block.blk[0] - 1}}">&lt;&lt;&lt; &nbsp;&nbsp;Previous Block {{block.blk[0] - 1}}</a> ....... <a href="block?block={{block.blk[0] + 1}}">Next Block {{block.blk[0] + 1}}&nbsp;&nbsp;&gt;&gt;&gt;</a></b></h5>
 <h3>&nbsp;&nbsp;Block Height: <a style=style="color:maroon;" href="/?height={{block.blk[0]}}"> {{ block.blk[0] }}</a></h3>
 
+     <table class="table table-box" style="max-width:800px">
+     <tbody>
+     <tr>
+	<td>
+	
     &nbsp;&nbsp;&nbsp;Height: {{ block.blk[0] }} <br>
     &nbsp;&nbsp;&nbsp;Hash: {{ block.blk[1] }} <br>
     &nbsp;&nbsp;&nbsp;Time: {{ block.blk[2] }} ({{block.blk[2] | format_time }}) <br>
@@ -21,10 +25,18 @@
     &nbsp;&nbsp;&nbsp;Size: {{ block.blk[6] }} kilobytes<br>
     &nbsp;&nbsp;&nbsp;Merkle Root: {{ block.blk[8] }} <br>
     &nbsp;&nbsp;&nbsp;Nonce: {{block.blk[3] }} <br>
+    
+    </td></tr>
+         </tbody>
+    </table>
 </div>
 {% if block.transactions %}
 <div class="container-fluid">
-<h3>&nbsp;Transactions</h3>
+<h3>&nbsp;&nbsp;Transactions</h3>
+
+<table class="table table-box" style="max-width:1500px">
+<tbody><tr><td>
+
      <table class="table table-condensed table-striped table-hover table-responsive table-bordered">
         <thead>
             <th>Transaction Hash(TXID)</th>
@@ -57,13 +69,14 @@
     {% endfor %}
     </tbody>
 </table>
-<h5>&nbsp;&nbsp;<a href="block?block={{block.blk[0] - 1}}">&lt;&lt;&lt; &nbsp;&nbsp;Previous Block {{block.blk[0] - 1}}</a> ....... <a href="block?block={{block.blk[0] + 1}}">Next Block {{block.blk[0] + 1}}&nbsp;&nbsp;&gt;&gt;&gt;</a></h5>
+
+</td></tr></tbody>
+</table>
+    
+<h5><b>&nbsp;&nbsp;&nbsp;&nbsp;<a href="block?block={{block.blk[0] - 1}}">&lt;&lt;&lt; &nbsp;&nbsp;Previous Block {{block.blk[0] - 1}}</a> ....... <a href="block?block={{block.blk[0] + 1}}">Next Block {{block.blk[0] + 1}}&nbsp;&nbsp;&gt;&gt;&gt;</a></b></h5>
 </div>
 {% endif %}
 {% else %}
-<br /><h1 style="text-align:center;">Block was not found.</h1></div>
-
-
+<h2 style="text-align:center; color:maroon;">Block was not found.</h2></div>
 {% endif %}
-
 {% endblock %}

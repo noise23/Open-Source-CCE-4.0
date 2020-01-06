@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-
-<br />
 <div class="jumbotron">
     &nbsp;&nbsp;
     <form method="get" action="/search" autocomplete="off" form style="display:inline">
     <input type="text"  size = "75" name="sterm" pattern="[a-zA-Z0-9 ]{1,}"title="a-z A-Z 0-9" maxlength="75"  autofocus required>
     <button type ="submit" class="button" value="Display">&larr;Search Height, Hash or Address</button></form><br>
-    {% if address.Status != "error" %}
-    <h2>Address Ledger </h2>
-    <h3>Address:&nbsp;<font style="color:maroon;">{{ address.address }}</font>&nbsp;
-        Balance:&nbsp;<font style="color:maroon;">{{ address.balance[0] | normalize}}</font></h3>
     </div>
     <div class="container-fluid table-responsive">
-        <h3> Last 100 Credits</h3><br>
+{% if address.Status != "error" %}
+<h3>&nbsp;&nbsp;Address:&nbsp;<font style="color:maroon;">{{ address.address }}</font>&nbsp; Balance:&nbsp;<font style="color:maroon;">{{ address.balance[0] | normalize}}</font></h3>
+    
+<h3>&nbsp;&nbsp;Last 100 Credits</h3>
+        
+<table class="table table-box" style="max-width:1500px">
+<tbody><tr><td>
+
          <table class="table table-condensed table-striped table-hover">
             <thead>
                 <th>(M-D-Y)&nbsp;|&nbsp;Time</th>
@@ -27,9 +28,17 @@
         {% endfor %}
              </tbody>
         </table>
+        
+</td></tr></tbody>
+</table>
+        
     </div>
     <div class="container-fluid table-responsive">
-        <h3> Last 100 Debits</h3><br>
+<h3>&nbsp;&nbsp;Last 100 Debits</h3>
+        
+<table class="table table-box" style="max-width:1500px">
+<tbody><tr><td>
+        
          <table class="table table-condensed table-striped table-hover">
             <thead>
                 <th>(M-D-Y)&nbsp;|&nbsp;Time</th>
@@ -44,15 +53,12 @@
         {% endfor %}
              </tbody>
         </table>
+        
+</td></tr></tbody>
+</table>
+        
     </div>
 {% else %}
-    <h1 style="text-align:center;">Address was not found.</h1></div>
-
-
+<h2 style="text-align:center; color:maroon;">Address was not found.</h2></div>
 {% endif %}
-
-
-
-
-
 {% endblock %}

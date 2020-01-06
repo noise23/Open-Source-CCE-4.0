@@ -1,39 +1,29 @@
 <!DOCTYPE html><html><head>
-    <meta content="text/html" charset="utf-8" http-equiv="Content-Type">
-    <title>{{ name }} Block Explorer</title>
-    <meta name="author" content="Truckcoin" >
-    <meta name="robots" content="noindex" />
-    <meta name="description" content="Truckcoin Alt Coin Block Explorer &amp Statistics. Detailed information on TRK blocks and transactions.">
-    <link href="static/bootstrap.css" rel="stylesheet" />
-    <link href="static/style.css" rel="stylesheet" />
-    <script src="static/jquery.min.js"></script>
-    <script src="static/bootstrap.min.js"></script>
-   {% block head %}{% endblock %}
+<meta content="text/html" charset="utf-8" http-equiv="Content-Type">
+<title>{{ name }} Block Explorer</title>
+<meta name="author" content="Truckcoin" >
+<meta name="robots" content="noindex" />
+<meta name="description" content="Alt Coin Block Explorer &amp Statistics. Detailed information on blocks and transactions.">
+<link href="static/style.css" rel="stylesheet" />
+{% block head %}{% endblock %}
+<link href="static/favicon.ico" rel="SHORTCUT ICON">
+</head>
+<img src="static/logo.png">
 
-
-
-    <link href="static/favicon.ico" rel="SHORTCUT ICON">
-
-
-    </head>
-   <nav class="navbar navbar-default navbar-fixed-top " role="navigation" >
-          <div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top " role="navigation" >
+<div class="container-fluid">
       <div class="navbar-header">
     <a class="btn" href="/"><b>Home</b></a>
-    <a class="btn" href="peers"><b>Peers</b></a>
     <a class="btn" href="rich"><b>Rich List</b></a>
-    <a class="btn" href="largetx"><b>Largest TX</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
- </div>
-       </nav>
-    {% block content %}{% endblock %}
-
-  <hr>
-  <br>  <br>
-    <div class="container-fluid" style="text-align:center;">
-                Powered by <a href="http://truckcoin.net">truckcoin.net</a>
-
-        </div>
-
-
-</body></html>
+    <a class="btn" href="largetx"><b>Largest TX</b></a>
+      </div>       
+</div>
+</nav>
+{% block content %}
+{% endblock %}
+<hr>
+<div class="container-fluid" style="text-align:center;">
+Powered by <a href="https://github.com/cryptocoinexplorer/Open-Source-CCE-4.0">Open-Source-CCE-4.0</a>
+</div>
+</body>
+</html>
