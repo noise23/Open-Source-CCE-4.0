@@ -21,7 +21,7 @@
     &nbsp;&nbsp;&nbsp;Time: {{ block.blk[2] }} ({{block.blk[2] | format_time }}) <br>
     &nbsp;&nbsp;&nbsp;Difficulty: {{ block.blk[5] | normalize }} (Bits: {{ block.blk[4] }}) <br>
     &nbsp;&nbsp;&nbsp;Transactions: {{ block.blk[11] }} <br>
-    &nbsp;&nbsp;&nbsp;Total Sent: {{ block.blk[12] | normalize }} <br>
+    &nbsp;&nbsp;&nbsp;Total Sent: {{ block.blk[12] | normalize }} TRK<br>
     &nbsp;&nbsp;&nbsp;Size: {{ block.blk[6] }} kilobytes<br>
     &nbsp;&nbsp;&nbsp;Merkle Root: {{ block.blk[8] }} <br>
     &nbsp;&nbsp;&nbsp;Nonce: {{block.blk[3] }} <br>
@@ -45,24 +45,24 @@
              </thead>
      <tbody>
 
-    {% for tx in block.transactions.iteritems() %}
+    {% for tx in block.transactions.items() %}
     <tr><td><a href="/transaction?transaction={{ tx[0] }}">{{ tx[0] }}</a></td><td>
-        {% for address,value in tx[1].txin.iteritems() %}
+        {% for address,value in tx[1].txin.items() %}
             {% if address == "POW Generation" or address == "Proof of Stake" %}
                 {{ address }}
                     {% if value > 0 %}
-                         : {{ value |normalize }}
+                         : {{ value |normalize }} TRK
                     {% endif %}
             {% else %}
-            <a href="/address?address={{ address }}">{{ address }}</a> : {{ value | normalize }} <br>
+            <a href="/address?address={{ address }}">{{ address }}</a> : {{ value | normalize }} TRK<br>
             {% endif %}
         {% endfor %}
         </td><td>
-        {% for address,value in tx[1].txout.iteritems() %}
+        {% for address,value in tx[1].txout.items() %}
             {% if value == 0 %}
                 {{ address }}
             {% else %}
-                <a href="/address?address={{ address }}">{{ address }}</a>  : {{ value | normalize }} <br>
+                <a href="/address?address={{ address }}">{{ address }}</a>  : {{ value | normalize }} TRK<br>
             {% endif %}
         {% endfor %}
         </td></tr>

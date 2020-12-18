@@ -20,7 +20,7 @@ will be added to this open source package.
 
 Requirements for Database Loader
 --------------------------------
-* Python 2.7
+* Python 3.x
 * MySQL-Server
 * Simplejson
 * PyMySql
@@ -34,24 +34,23 @@ Requirements for Web Server
 * Jinja2
 * DBUtils 1.1
 
-Where to Get Dependencies
+Dependencies
 -------------------------
-* Python 2.7: (sudo) apt-get install python-dev
+* Python 3.x
 
-* MySQL Server: (sudo) apt-get install mysql-server
+* MySQL Server
 
-* Simplejson: (sudo) apt-get install python-simplejson
+* Simplejson
 
-* Jinja2: (sudo) apt-get install python-jinja2
+* Jinja2
 
-* Requests: (sudo) apt-get install python-requests
+* Requests
 
-        - Alternate: https://pypi.python.org/pypi/requests/
 * PyMySql: https://github.com/PyMySQL/PyMySQL
 
 * Interrupting cow: https://pypi.python.org/pypi/interruptingcow
 
-* DBUtils 1.1: https://pypi.python.org/pypi/DBUtils
+* DBUtils: https://pypi.python.org/pypi/DBUtils
 
 * CherryPy: http://www.cherrypy.org/
 
@@ -59,6 +58,8 @@ Documentation Files
 -------------------
 * Located in the the docs folder
 
+        - installation.md (Installation)
+        
         - dbload.rst (Setup, configuration and operation of the database loader)
 
         - web_server.rst (Setup, configuration and operation of the web server)

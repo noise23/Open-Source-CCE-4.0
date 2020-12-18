@@ -23,16 +23,17 @@
 
 import sys
 import time
-import ConfigParser
+import configparser
 import re
 import pymysql
-from DBUtils.PooledDB import PooledDB
+#from DBUtils.PooledDB import PooledDB
+from dbutils.pooled_db import PooledDB
 from decimal import *
 from collections import OrderedDict
 
 
 # Configuration file reader
-config_parse = ConfigParser.ConfigParser()
+config_parse = configparser.ConfigParser(inline_comment_prefixes = ";")
 config_parse.read('cce.conf')
 CONFIG = {section: {option: config_parse.get(section, option) for option in config_parse.options(section)} for section
           in config_parse.sections()}
@@ -128,7 +129,7 @@ def query_single(sql, *parms):
         db.close()
         return ret
     except Exception as e:
-        print >> sys.stderr, e, str('query_single: ' + sql)
+        sys.stderr.write(e+str('query_single: ' + sql))
         cur.close()
         db.close()
         return None
@@ -144,7 +145,7 @@ def query_multi(sql, *parms):
         db.close()
         return ret
     except Exception as e:
-        print >> sys.stderr, e, str('query_multi: ' + sql)
+        sys.stderr.write(e+str('query_multi: ' + sql))
         cur.close()
         db.close()
         return None
@@ -159,7 +160,7 @@ def query_noreturn(sql, *parms):
         db.close()
         return ret
     except Exception as e:
-        print >> sys.stderr, e, str('query_noreturn: ' + sql)
+        sys.stderr.write(e+str('query_noreturn: ' + sql))
         cur.close()
         db.close()
         return None
@@ -182,7 +183,7 @@ def homepage(num, height):
             topblocks = query_multi('SELECT * FROM block WHERE height <= %s ORDER BY height DESC LIMIT %s', height, num)
         return num, int(height), {'Status': 'ok', 'stats': stats, 'topblocks': topblocks}
     except Exception as e:
-        print >> sys.stderr, e, 'Homepage'
+        sys.stderr.write(e+'Homepage')
         return {'Status': 'error', 'Data': 'Unknown error'}
 
 # Regular expression:  re.sub(r'[^a-zA-Z0-9]', '', <input string>)
@@ -293,7 +294,7 @@ def get_block(block):
                 temp_txout = {}
         return {'Status': 'ok', 'blk': blk, 'transactions': transactions}
     except Exception as e:
-        print >> sys.stderr, e, 'Block Page'
+        sys.stderr.write(e+ 'Block Page')
         return {'Status': 'error', 'Data': 'Block not found'}
 
 
@@ -307,7 +308,7 @@ def get_transaction(transaction):
         blk = query_single('SELECT * FROM block WHERE height = %s', txout[0][6])
         return {'Status': 'ok', 'blk': blk, 'txin': txin, 'txout': txout}
     except Exception as e:
-        print >> sys.stderr, e, 'Transactions'
+        sys.stderr.write(e+ 'Transactions')
         return {'Status': 'error', 'Data': 'Unknown error'}
 
 
@@ -320,7 +321,7 @@ def get_peerinfo():
             return {'Status': 'ok', 'Data': peerinfo}
 
     except Exception as e:
-        print >> sys.stderr, e, 'Peerinfo'
+        sys.stderr.write(e+ 'Peerinfo')
         return {'Status': 'error', 'Data': 'Unknown error'}
 
 
@@ -333,7 +334,7 @@ def get_rich():
             return {'Status': 'OK', 'Data': rich}
 
     except Exception as e:
-        print >> sys.stderr, e, 'Rich List'
+        sys.stderr.write(e+ 'Rich List')
         return {'Status': 'error', 'Data': 'Unknown error'}
 
 
@@ -346,7 +347,7 @@ def get_largetx():
             return {'Status': 'OK', 'Data': largetx}
 
     except Exception as e:
-        print >> sys.stderr, e, 'Large TX'
+        sys.stderr.write(e+ 'Large TX')
         return {'Status': 'error', 'Data': 'Unknown error'}
 
 
@@ -370,5 +371,5 @@ def get_address(address):
         return {'Status': 'OK', 'balance': balance, 'txin': txin, 'txout': txout, 'address': address}
 
     except Exception as e:
-        print >> sys.stderr, e, 'Address Page'
+        sys.stderr.write(e+ 'Address Page')
         return {'Status': 'error', 'Data': 'Unknown error'}

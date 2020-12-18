@@ -47,7 +47,7 @@ class explorer:
     @cherrypy.expose
     def index(self, **args):
         try:
-            num, height, ret = homepage(args.get('num', 25), args.get('height', None))
+            num, height, ret = homepage(args.get('num', 15), args.get('height', None))
             stats = ret.get('stats', None)
             topblocks = ret.get('topblocks', None)
             template = templateEnv.get_template('index.html')
@@ -62,7 +62,7 @@ class explorer:
             }
             return template.render(templateVars)
         except Exception as e:
-            print >> sys.stderr, e , 'Homepage'
+            sys.stderr.write(e+ 'Homepage')
             raise cherrypy.HTTPError(503)
 
 
@@ -82,7 +82,7 @@ class explorer:
             }
             return template.render(templateVars)
         except Exception as e:
-            print >> sys.stderr, e , 'Block page'
+            sys.stderr.write(e+ 'Block page')
             raise cherrypy.HTTPError(503)
 
     @cherrypy.expose
@@ -108,7 +108,7 @@ class explorer:
                         }
             return template.render(templateVars)
         except Exception as e:
-            print >> sys.stderr, e , 'Peer page'
+            sys.stderr.write(e+ 'Peer page')
             raise cherrypy.HTTPError(503)
 
     @cherrypy.expose
@@ -122,7 +122,7 @@ class explorer:
                         }
             return template.render(templateVars)
         except Exception as e:
-            print >> sys.stderr, e , 'Rich page'
+            sys.stderr.write(e+ 'Rich page')
             raise cherrypy.HTTPError(503)
 
     @cherrypy.expose
@@ -136,7 +136,7 @@ class explorer:
                         }
             return template.render(templateVars)
         except Exception as e:
-            print >> sys.stderr, e , 'Transaction page'
+            sys.stderr.write(e+ 'Transaction page')
             raise cherrypy.HTTPError(503)
 
 
@@ -151,7 +151,7 @@ class explorer:
                         }
             return template.render(templateVars)
         except Exception as e:
-            print >> sys.stderr, e , 'Address page'
+            sys.stderr.write(e+ 'Address page')
             raise cherrypy.HTTPError(503)
 
     @cherrypy.expose
@@ -165,7 +165,7 @@ class explorer:
                         }
             return template.render(templateVars)
         except Exception as e:
-            print >> sys.stderr, e , 'Large TX page'
+            sys.stderr.write(e+ 'Large TX page')
             raise cherrypy.HTTPError(503)
 
     # Explorer API. Simple commands are queried directly. More complex returns should use functions coded into serverutil.py.

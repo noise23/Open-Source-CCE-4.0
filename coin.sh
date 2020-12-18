@@ -2,6 +2,6 @@
 
 cd <Complete path to dbloader directory>
 
-python dbload.py
+python3 dbload.py
 
 exit 0

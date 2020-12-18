@@ -100,7 +100,7 @@ Starting the web server
 
 * Start the server with:
 
-    - python websrv.py
+    - python3 websrv.py
 
 Stopping the web server
 -----------------------
@@ -124,7 +124,7 @@ Starting/Stopping the web server with systemd
                 [Service]
                 Type=forking
                 WorkingDirectory=/path/to/working/dir/
-                ExecStart=/usr/bin/python /path/to/working/dir/websrv.py
+                ExecStart=/usr/bin/python3 /path/to/working/dir/websrv.py
                 PIDFile=/path/to/working/dir/cherrypy.pid
                 Restart=on-failure
                 RestartSec=2
